@@ -36,6 +36,28 @@ namespace Software_Project_facepart
                 }
 
             }
+
+            if (File.Exists("people.csv"))
+            {
+                File.Delete("people.csv");
+            }
+            string filePath1 = "young.csv"; // 첫 번째 CSV 파일 경로
+            string filePath2 = "old.csv"; // 두 번째 CSV 파일 경로
+
+            using (StreamReader reader1 = new StreamReader(filePath1))
+            using (StreamReader reader2 = new StreamReader(filePath2))
+            using (StreamWriter writer = new StreamWriter("people.csv"))
+            {
+                writer.WriteLine("{0},{1}","file_name","age");
+                string content1 = reader1.ReadToEnd(); // 첫 번째 파일 내용 전체를 읽음
+                string content2 = reader2.ReadToEnd(); // 두 번째 파일 내용 전체를 읽음
+
+                // 첫 번째 파일 내용 쓰기
+                writer.Write(content1);
+
+                // 두 번째 파일 내용 쓰기
+                writer.Write(content2); 
+            }
         }
     }
 }

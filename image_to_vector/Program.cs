@@ -29,7 +29,7 @@ namespace image_to_vector
 
                 // 벡터 데이터 저장
                 string fileName = Path.GetFileNameWithoutExtension(imageFile);
-                string arffFilePath = Path.Combine(folderPath, fileName + ".arff");
+                string arffFilePath = Path.Combine("C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\늙은 사람 가공 이미지", fileName + ".arff");
                 SaveVectorToARFF(vector, arffFilePath);
             }
         }

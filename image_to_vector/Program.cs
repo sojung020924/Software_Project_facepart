@@ -11,7 +11,7 @@ namespace image_to_vector
         static void Main(string[] args)
         {
             // 사진들이 있는 폴더 경로
-            string folderPath = "C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\늙은 사람 이미지";
+            string folderPath = "C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\늙은 사람 이미지(가공)";
 
             // 폴더 내의 모든 사진 파일에 대해 처리
             string[] imageFiles = Directory.GetFiles(folderPath, "*.jpg");
@@ -29,7 +29,29 @@ namespace image_to_vector
 
                 // 벡터 데이터 저장
                 string fileName = Path.GetFileNameWithoutExtension(imageFile);
-                string arffFilePath = Path.Combine("C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\늙은 사람 가공 이미지", fileName + ".arff");
+                string arffFilePath = Path.Combine("C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\늙은 사람 이미지 벡터", fileName + ".arff");
+                SaveVectorToARFF(vector, arffFilePath);
+            }
+            // 사진들이 있는 폴더 경로
+            folderPath = "C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\젊은 사람 이미지(가공)";
+
+            // 폴더 내의 모든 사진 파일에 대해 처리
+            imageFiles = Directory.GetFiles(folderPath, "*.jpg");
+
+            foreach (string imageFile in imageFiles)
+            {
+                // 이미지 로드
+                using Bitmap bitmap = new Bitmap(imageFile, true);
+
+                // 이미지를 그레이스케일로 변환
+                using Bitmap grayscaleBitmap = ToGrayscale(bitmap);
+
+                // 이미지를 double 형식의 벡터로 변환
+                double[] vector = ImageToArray(grayscaleBitmap);
+
+                // 벡터 데이터 저장
+                string fileName = Path.GetFileNameWithoutExtension(imageFile);
+                string arffFilePath = Path.Combine("C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\젊은 사람 이미지 벡터", fileName + ".arff");
                 SaveVectorToARFF(vector, arffFilePath);
             }
         }

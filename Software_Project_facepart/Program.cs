@@ -7,7 +7,7 @@ namespace Software_Project_facepart
     {
         static void Main(string[] args)
         {
-            string[] fileNames1 = Directory.GetFiles(@"젊은 사람 이미지");
+            string[] fileNames1 = Directory.GetFiles(@"젊은 사람 이미지(가공)");
 
             if (File.Exists("young.csv")){
                 File.Delete("young.csv");
@@ -21,7 +21,7 @@ namespace Software_Project_facepart
                 }
 
             }
-            string[] fileNames2 = Directory.GetFiles(@"늙은 사람 이미지");
+            string[] fileNames2 = Directory.GetFiles(@"늙은 사람 이미지(가공)");
 
             if (File.Exists("old.csv"))
             {

@@ -24,7 +24,7 @@ namespace image_normalization
 
                 // 정규화된 이미지 저장
                 string fileName = Path.GetFileNameWithoutExtension(imageFile);
-                string outputFilePath = Path.Combine(folderPath, $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
+                string outputFilePath = Path.Combine(folderPath+"(가공)", $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
                 normalizedImage.Save(outputFilePath);
             }
 
@@ -44,11 +44,11 @@ namespace image_normalization
 
                 // 정규화된 이미지 저장
                 string fileName = Path.GetFileNameWithoutExtension(imageFile);
-                string outputFilePath = Path.Combine(folderPath, $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
+                string outputFilePath = Path.Combine(folderPath+ "(가공)", $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
                 normalizedImage.Save(outputFilePath);
             }
 
-            Console.WriteLine("이미지 처리가 완료되었습니다.");
+            Console.WriteLine("처리 완료");
         }
         static Bitmap NormalizeImage(Bitmap image)
         {

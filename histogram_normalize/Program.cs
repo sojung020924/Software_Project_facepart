@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 
 namespace image_normalization
@@ -8,7 +9,7 @@ namespace image_normalization
     {
         static void Main(string[] args)
         {
-            //폴더 경로
+            //폴더 경로 (늙은 사람)
             string folderPath = "C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\늙은 사람 이미지";
 
             // 폴더 내의 모든 이미지 파일
@@ -16,19 +17,20 @@ namespace image_normalization
 
             foreach (string imageFile in imageFiles)
             {
+
                 //이미지를 비트맵으로(RGB)
-                Bitmap image = new Bitmap(imageFile);
+                Bitmap image = ResizeImage(imageFile, 256, 256);
 
                 // 정규화
                 Bitmap normalizedImage = NormalizeImage(image);
 
                 // 정규화된 이미지 저장
                 string fileName = Path.GetFileNameWithoutExtension(imageFile);
-                string outputFilePath = Path.Combine(folderPath+"(가공)", $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
+                string outputFilePath = Path.Combine(folderPath, $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
                 normalizedImage.Save(outputFilePath);
             }
 
-            //폴더 경로
+            //폴더 경로 (젊은 사람)
             folderPath = "C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\젊은 사람 이미지";
 
             // 폴더 내의 모든 이미지 파일
@@ -37,18 +39,31 @@ namespace image_normalization
             foreach (string imageFile in imageFiles)
             {
                 //이미지를 비트맵으로(RGB)
-                Bitmap image = new Bitmap(imageFile);
+                Bitmap image = ResizeImage(imageFile,256,256);
 
                 // 정규화
                 Bitmap normalizedImage = NormalizeImage(image);
 
                 // 정규화된 이미지 저장
                 string fileName = Path.GetFileNameWithoutExtension(imageFile);
-                string outputFilePath = Path.Combine(folderPath+ "(가공)", $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
+                string outputFilePath = Path.Combine(folderPath, $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
                 normalizedImage.Save(outputFilePath);
             }
 
             Console.WriteLine("처리 완료");
+        }
+        static Bitmap ResizeImage(string imagePath, int width, int height)
+        {
+            using (var image = new Bitmap(imagePath))
+            {
+                var resizedImage = new Bitmap(width, height);
+                using (var graphics = Graphics.FromImage(resizedImage))
+                {
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.DrawImage(image, 0, 0, width, height);
+                }
+                return resizedImage;
+            }
         }
         static Bitmap NormalizeImage(Bitmap image)
         {

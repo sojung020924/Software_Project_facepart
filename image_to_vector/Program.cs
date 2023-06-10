@@ -2,8 +2,6 @@
 using System.Drawing;
 using System.IO;
 
-
-
 namespace image_to_vector
 {
     class Program
@@ -29,9 +27,10 @@ namespace image_to_vector
 
                 // 벡터 데이터 저장
                 string fileName = Path.GetFileNameWithoutExtension(imageFile);
-                string arffFilePath = Path.Combine("C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\늙은 사람 이미지 벡터", fileName + ".arff");
-                SaveVectorToARFF(vector, arffFilePath);
+                string csvFilePath = Path.Combine("C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\늙은 사람 이미지 벡터", fileName + ".csv");
+                SaveVectorToCSV(vector, csvFilePath);
             }
+
             // 사진들이 있는 폴더 경로
             folderPath = "C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\젊은 사람 이미지(가공)";
 
@@ -51,8 +50,8 @@ namespace image_to_vector
 
                 // 벡터 데이터 저장
                 string fileName = Path.GetFileNameWithoutExtension(imageFile);
-                string arffFilePath = Path.Combine("C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\젊은 사람 이미지 벡터", fileName + ".arff");
-                SaveVectorToARFF(vector, arffFilePath);
+                string csvFilePath = Path.Combine("C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\젊은 사람 이미지 벡터", fileName + ".csv");
+                SaveVectorToCSV(vector, csvFilePath);
             }
         }
 
@@ -96,28 +95,16 @@ namespace image_to_vector
             return array;
         }
 
-        // 벡터 데이터를 ARFF 파일에 저장하는 함수
-        static void SaveVectorToARFF(double[] vector, string filePath)
+        // 벡터 데이터를 CSV 파일에 저장하는 함수
+        static void SaveVectorToCSV(double[] vector, string filePath)
         {
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                // ARFF 파일 헤더 작성
-                writer.WriteLine("@relation image");
-                writer.WriteLine();
-
-                int vectorSize = vector.Length;
-
-                for (int i = 0; i < vectorSize; i++)
-                {
-                    writer.WriteLine("@attribute attribute" + (i + 1) + " numeric");
-                }
-
-                writer.WriteLine();
-                writer.WriteLine("@data");
-
                 // 벡터 데이터 작성
-                string vectorString = string.Join(",", vector);
-                writer.WriteLine(vectorString);
+                foreach (double value in vector)
+                {
+                    writer.WriteLine(value);
+                }
             }
         }
     }

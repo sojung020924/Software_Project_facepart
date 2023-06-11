@@ -19,14 +19,14 @@ namespace image_normalization
             {
 
                 //이미지를 비트맵으로(RGB)
-                Bitmap image = ResizeImage(imageFile, 256, 256);
+                Bitmap image = ResizeImage(imageFile, 64, 64);
 
                 // 정규화
                 Bitmap normalizedImage = NormalizeImage(image);
 
                 // 정규화된 이미지 저장
                 string fileName = Path.GetFileNameWithoutExtension(imageFile);
-                string outputFilePath = Path.Combine(folderPath, $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
+                string outputFilePath = Path.Combine("C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\늙은 사람 이미지(가공)", $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
                 normalizedImage.Save(outputFilePath);
             }
 
@@ -39,14 +39,14 @@ namespace image_normalization
             foreach (string imageFile in imageFiles)
             {
                 //이미지를 비트맵으로(RGB)
-                Bitmap image = ResizeImage(imageFile,256,256);
+                Bitmap image = ResizeImage(imageFile,64,64);
 
                 // 정규화
                 Bitmap normalizedImage = NormalizeImage(image);
 
                 // 정규화된 이미지 저장
                 string fileName = Path.GetFileNameWithoutExtension(imageFile);
-                string outputFilePath = Path.Combine(folderPath, $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
+                string outputFilePath = Path.Combine("C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\젊은 사람 이미지(가공)", $"{fileName}_normalized.jpg"); //구분이 되도록 뒤에 normalized 붙이기
                 normalizedImage.Save(outputFilePath);
             }
 

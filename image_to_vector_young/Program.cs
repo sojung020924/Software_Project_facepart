@@ -9,7 +9,7 @@ namespace image_to_vector
         static void Main(string[] args)
         {
             // 사진들이 있는 폴더 경로
-            string folderPath = "C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\늙은 사람 이미지(가공)";
+            string folderPath = "C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\젊은 사람 이미지(가공)";
 
             // 모든 사진 데이터를 저장할 리스트
             var allData = new List<double[]>();
@@ -33,7 +33,7 @@ namespace image_to_vector
             }
 
             // 벡터 데이터 저장
-            string csvFilePath = "C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\늙은 사람 이미지 벡터\\all_data.csv";
+            string csvFilePath = "C:\\Users\\sojun\\source\\repos\\Software_Project_facepart\\Software_Project_facepart\\bin\\Debug\\net6.0\\젊은 사람 이미지 벡터\\all_data.csv";
             SaveDataToCSV(allData, csvFilePath);
         }
 
@@ -82,11 +82,11 @@ namespace image_to_vector
         {
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                
+
                 // 벡터 데이터 작성
                 foreach (double[] vector in data)
                 {
-                    string line = "old," + string.Join(",", vector);
+                    string line = "young," + string.Join(",", vector);
                     writer.WriteLine(line);
                 }
             }
